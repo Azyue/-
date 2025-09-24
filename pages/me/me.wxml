@@ -1,0 +1,66 @@
+<!--pages/me/me.wxml-->
+<!-- 背景图 -->
+<view class="bg_box">
+	<image src="/images/tupian/电玩/OIP-C (2).jpg"></image>
+</view>
+
+<!-- 未登录 -->
+<view class="login_box" wx:if="{{!UserLogin}}">
+	<view bindtap="goLogin">
+		<view class="login_click">点击登录</view>
+		<view class="tips text_tips_spring">需要先完成授权登录才能使用服务哟(*v*)</view>
+	</view>
+</view>
+
+<!-- 已登录 -->
+<view class="logged_box" wx:if="{{UserLogin}}">
+	<view class="head_img">
+		<image src="{{userInfo.avatarUrl}}"></image>
+	</view>
+	<view class="user_info">
+		<view class="nickname">欢迎：{{userInfo.nickName}}</view>
+		<view class="user_type">微信用户</view>
+	</view>
+</view>
+
+<!-- 服务框 -->
+<view class="content-box">
+	<view class="content-title" style="font-size: 16px;">服务</view>
+	<view class="content-row" bindtap="MyCollection">
+		<view class="content-icon">
+			<image src="/images/mycollection.png"></image>
+		</view>
+		<view class="content-text" style="font-size: 14px;">我的收藏</view>
+	</view>
+
+	<view class="content-row" bindtap="stagedoor" wx:if="{{admin}}">
+		<view class="content-icon">
+			<image src="/images/stagedoor.png"></image>
+		</view>
+		<view class="content-text" style="font-size: 14px;">进入后台</view>
+	</view>
+	
+	<!-- <view class="content-row" bindtap="RegisterStore"  wx:if="{{registerStore === false}}">
+		<view class="content-icon">
+			<image src="/images/store.png"></image>
+		</view>
+		<view class="content-text" style="font-size: 14px;">店铺入驻</view>
+	</view> -->
+<!-- 
+	<view class="content-row">
+		<view class="content-icon">
+			<image src="/images/kefu.png"></image>
+		</view>
+		<view class="content-text" style="font-size: 14px;">
+			<button open-type='contact' style="color:black;height:35px;line-height:35px;font-weight: lighter;padding:0;width:100%;border:none;background:#fff;font-size:14px;text-align:left;">在线客服</button>
+		</view>
+	</view> -->
+
+	<view class="content-row" bindtap="exit">
+		<view class="content-icon">
+			<image src="/images/exit.png"></image>
+		</view>
+		<view class="content-text" style="font-size: 14px;">退出登录</view>
+	</view>
+
+</view>

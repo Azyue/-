@@ -1,0 +1,137 @@
+<!--pages/home/home.wxml-->
+<!-- 搜索框 -->
+<view class="search main_bg_color">
+    <!-- 当前城市 -->
+    <view class="city" bindtap="chooseLocation">
+        <text class="city_text">{{myCity}}</text>
+        <image src="/images/down.png"></image>
+    </view>
+    <view class="search_in">
+        <image src="/images/search.png" bindtap="goSearch"></image>
+        <input placeholder="请输入搜索内容" value="{{searchData}}" bindinput="searchInput" bindconfirm="goSearch" />
+        <image class="clear_btn" src="/images/clear.png" wx:if="{{clear}}" bindtap="clearInput"></image>
+    </view>
+    <!-- 扫码 -->
+    <view class="scan">
+        <image src="/images/scan.png" bindtap="goScan"></image>
+    </view>
+</view>
+
+<!-- 轮播图 -->
+<view class="swiper_box" wx:if="{{bannerImg!='' && Sudoku}}">
+    <swiper autoplay="true" circular="true">
+        <block wx:for="{{bannerImg}}" wx:key="key">
+            <swiper-item>
+                <image src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<!-- 菜系列表 -->
+<view class="sudoku_box" wx:if="{{SysCuisine!='' && Sudoku}}">
+    <view class="sudoku_list">
+        <view class="sudoku_item {{itemid == item._id?'item_ckd':''}}" wx:for="{{SysCuisine}}" wx:key="index">
+            <image class="sudoku_item_img" src="{{item.cuisineImg}}" data-key="{{item.cuisineName}}" data-itemid="{{item._id}}" bindtap="clickSudoku"></image>
+            <view class="sudoku_item_name">{{item.cuisineName}}</view>
+        </view>
+    </view>
+</view>
+
+<!-- 排序 -->
+<view class="sort_box">
+    <view class="sort_item" bindtap="onSortKey">
+        <view class="sort_item_title text_grey">当前：{{sortKey}}</view>
+        <view class="sort_item_img_box">
+            <image class="sort_item_img" src="/images/desc.png"></image>
+        </view>
+    </view>
+
+    <!-- <view class="sort_item" data-key="score" bindtap="onSort">
+        <view class="sort_item_title text_grey">星级</view>
+        <view class="sort_item_img_box">
+            <image class="sort_item_img" src="/images/asc.png"></image>
+            <image class="sort_item_img" src="/images/desc.png"></image>
+        </view>
+    </view>
+    <view class="sort_item" data-key="Price" bindtap="onSort">
+        <view class="sort_item_title text_grey">价格</view>
+        <view class="sort_item_img_box">
+            <image class="sort_item_img" src="/images/asc.png"></image>
+            <image class="sort_item_img" src="/images/desc.png"></image>
+        </view>
+    </view> -->
+    <view class="sort_item" data-key="Distance" bindtap="onSort">
+        <view class="sort_item_title text_grey">距离</view>
+        <view class="sort_item_img_box">
+            <image class="sort_item_img" src="/images/asc.png"></image>
+            <image class="sort_item_img" src="/images/desc.png"></image>
+        </view>
+    </view>
+</view>
+
+<!-- 商店卡片 -->
+<view class="card" wx:for='{{StoreList}}' wx:key="index" data-id="{{item._id}}" bindtap="goStoreDetail">
+    <view class="card_img">
+        <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+    </view>
+    <view class="card_text">
+        <view class="card_text_row_box">
+            <view class="card_text_h1">{{index+1}}、{{item.storeName}}</view>
+        </view>
+        <view class="card_text_row_box">
+            <view class='score_box' wx:if="{{item.score}}">
+                <text>星级：</text>
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+        </view>
+        <view class="card_text_row_box">
+            <view class="card_text_h2" wx:if="{{item.Price}}">人均消费：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text></view>
+            <view class="card_text_h2" wx:if="{{item.cuisine}}">分类：<text class="text_grey">{{item.cuisine}}</text></view>
+        </view>
+        <view class="card_text_row_box">
+            <view class="card_text_h2">距离：<text class="text_grey">{{item.Distance}} km</text></view>
+            <view class="card_text_h2" wx:if="{{item.feat}}">特色：<text class="text_grey">{{item.feat}}</text></view>
+        </view>
+        <view class="card_text_row_box">
+            <view class="card_text_h2">地址：<text class="text_grey">{{item.Address}}</text></view>
+        </view>
+    </view>
+</view>
+
+<!-- 商品卡片 -->
+<view class="card" wx:for='{{GoodsList}}' wx:key="index" data-id="{{item._id}}" bindtap="goGoodsDetail">
+    <view class="card_img">
+        <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+    </view>
+    <view class="card_text">
+        <view class="card_text_row_box">
+            <view class="card_text_h1">{{index+1}}、商品：{{item.goodsName}}</view>
+        </view>
+        <view class="card_text_row_box">
+            <view class='score_box' wx:if="{{item.score}}">
+                <text>星级：</text>
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+        </view>
+        <view class="card_text_row_box">
+            <view class="card_text_h2">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+            <view class="card_text_h2" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+        </view>
+        <view class="card_text_row_box">
+            <view class="card_text_h2">店铺：<text class="text_grey">{{item.storeName}}</text></view>
+            <view class="card_text_h2">距离：<text class="text_grey">{{item.Distance}} km</text></view>
+        </view>
+    </view>
+</view>
+<!-- 没有数据 -->
+<view class="nothing text_blue" wx:if="{{GoodsList.length == ''&& StoreList.length ==''}}">
+    <image src="/images/nothing.png"></image>
+    <view bindtap="onShow">刷新</view>
+</view>
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>
