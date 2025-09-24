@@ -1,0 +1,40 @@
+<!--StorePackage/registerStore/registerStore.wxml-->
+
+<view wx:if="{{!apply}}" class="list_box">
+  <!-- 输入框 -->
+  <view class="list_item cu-form-group" wx:for='{{InputList}}' wx:key='input'>
+    <view class='title'>
+      <text decode="true">&nbsp;&nbsp;<text decode="true" class="text_red">*</text>{{item.title}}</text>
+    </view>
+    <input style="color: #42A5F5;" placeholder="{{item.placeholder}}" id="{{item.id}}" type="{{item.type}}" maxlength='{{item.maxlength}}' auto-height="true" data-key="{{item.id}}" bindinput="InputData"></input>
+  </view>
+
+  <!-- 选择地址 -->
+  <view class="list_item cu-form-group">
+    <view class='title'>
+      <text decode="true">&nbsp;&nbsp;<text decode="true" class="text_red">*</text>店铺位置：</text>
+    </view>
+    <view class="address">{{storeAddress.name}}</view>
+    <image class="clear_img" src="/images/clear.png" wx:if="{{clear}}" bindtap="clearAddress"></image>
+    <image class="choose_img" src="/images/chooselocation.png" bindtap="chooseLocation"></image>
+  </view>
+  <view class="tips text_tips_spring">说明：请填写有效信息，方便管理员审核！</view>
+
+  <!-- 提交按钮 -->
+  <view class="submitbtn">
+    <button form-type="SubmitEntrust" type="primary" bindtap="Submit">确认提交</button>
+  </view>
+</view>
+
+
+<!-- 已提交，待审核 -->
+<view wx:else class="list_box">
+  <view class="title">姓名：{{bossName}}</view>
+  <view class="desc">电话：{{bossPhone}}</view>
+  <view class="desc">店铺名字：{{storeName}}</view>
+  <view class="desc">店铺简介：{{storeIntro}}</view>
+  <view class="desc">店铺地址：{{AddressName}}</view>
+  <view class="desc">提交时间：<text class="text_blue">{{ApplyTime}}</text></view>
+  <view class="desc">审核状态：<text class="text_blue">待审核</text></view>
+  <view class="tips text_tips_spring">说明：信息已经提交，请耐心等待管理员审核！</view>
+</view>

@@ -1,0 +1,51 @@
+<!--StorePackage/chefDetail/chefDetail.wxml-->
+<!-- 轮播图 -->
+<view class="swiper" wx:if="{{swiperImg[0]}}">
+	<swiper indicator-dots="true" autoplay="true" circular="true" interval="2000">
+		<block wx:for="{{swiperImg}}" wx:key="index">
+			<swiper-item>
+				<image src="{{item}}"></image>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
+<!-- 店铺信息 -->
+<block wx:for="{{DataList}}" wx:key="index">
+	<view class="store_card">
+		<view class="store_card_img">
+			<image src="{{item.chefImg}}"></image>
+		</view>
+		<view class="store_card_info">
+			<view class="store_text_h1">厨师：<text class="text_grey">{{item.chefName}}</text></view>
+			<view class='score_box' wx:if="{{item.score}}">
+				<text class="store_text_h2">星级：</text>
+				<block wx:for="{{item.score}}" wx:key="index">
+					<image src="/images/star_on.png" />
+				</block>
+			</view>
+
+			<view class="store_text_h3">擅长菜系：<text class="text_grey">{{item.chefCuisine}}</text></view>
+			<view class="store_text_h3">所属店铺：<text class="text_grey">{{item.storeName}}</text></view>
+		</view>
+	</view>
+
+	<!-- 详情图片 -->
+	<view class="detail_img_box">
+		<view class="detail_img" wx:for='{{swiperImg}}' wx:key="index">
+			<image src="{{item}}" data-url="{{swiperImg[index]}}" bindtap="ViewImage"></image>
+		</view>
+	</view>
+
+
+	<!-- /* 底部导航栏 */ -->
+	<view class="footer_nav">
+		<view class="footer_left">
+			<view class="footer_item" data-id="{{item.storeId}}" bindtap="goStore">
+				<image src="/images/store.png"></image>
+				<view>店铺</view>
+			</view>
+		</view>
+		<view class="footer_right" data-phone="{{item.bossPhone}}" bindtap="CallPhone">电话预约</view>
+	</view>
+</block>

@@ -1,0 +1,49 @@
+/* StorePackage/registerStore/registerStore.wxss */
+/* 列表盒子 */
+.list_box {
+	height: auto;
+	margin: 20rpx;
+	padding: 25rpx;
+	border-radius: 15rpx;
+	background-color: #fff;
+	box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+/* 列表项 */
+.list_item{
+	border-bottom: 1px #42A5F5 solid;
+}
+
+/* 选择位置按钮图标 */
+.choose_img{
+	width: 100rpx;
+	height: 100rpx;
+}
+/* 位置信息 */
+.address{
+	width: 240rpx;
+	height: auto;
+	font-size: 14px;
+	color: #42A5F5;
+}
+/* 提示 */
+.desc {
+	margin-top: 20rpx;
+	font-size: 14px;
+	color: grey;
+}
+
+/* 提交按钮 */
+.submitbtn {
+	margin: 20px;
+}
+.submitbtn button{
+	box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+
+/* 清除键按钮图标 */
+.clear_img {
+	z-index: 999;
+	padding: 10rpx;
+	width: 60rpx;
+	height: 60rpx;
+}

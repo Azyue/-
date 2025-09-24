@@ -1,0 +1,70 @@
+<!--StorePackage/addGoods/addGoods.wxml-->
+<view class="box">
+    <!-- 添加商品 -->
+    <view class="input_item">
+        <view>商品：</view>
+        <input class="text_blue" type="text" maxlength="30" placeholder="填写商品" value="{{GoodsName}}" data-id="goods" name="goods" bindinput="inputData"></input>
+    </view>
+    <view class="input_item">
+        <view>价格：</view>
+        <input class="text_blue" type="number" maxlength="11" placeholder="填写价格" value="{{Price}}" data-id="price" name="price" bindinput="inputData"></input>
+        <picker mode="multiSelector" value="{{PriceSelected}}" range="{{PriceList}}" bindchange="PriceChange">
+            单位：<text class="text_blue">{{PriceUnit?PriceUnit:'选择单位'}}</text>
+        </picker>
+    </view>
+    <view class="input_item">
+        <picker value="{{CuisineSelected}}" range="{{CuisineList}}" data-key="{{CuisineList}}" bindchange="CuisineChange">
+            <text>菜系：</text><text class="text_blue">{{Cuisine?Cuisine:'设置菜系（选填）'}}</text>
+        </picker>
+    </view>
+
+
+    <!-- 封面照片上传 -->
+    <view class="cu-form-group" style="margin-top: 40rpx;">
+        <view class='title'>
+            <text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>商品封面图片（{{coverImg.length}}/1）</text>
+        </view>
+    </view>
+    <view class="cu-form-group" style="padding-left:5px;">
+        <view class="grid col-3 grid-square flex-sub">
+            <view class="solids" bindtap="CoverImg" wx:if="{{isCoverImg}}">
+                <text class="iconfont icon_add_img"></text>
+            </view>
+
+            <view class="bg-img" wx:else>
+                <image src='{{coverImg}}' mode='aspectFill' bindtap="PWCoverImg"></image>
+                <view class="cu-tag bg-red" catchtap="DECoverImg">
+                    <text class="iconfont icon_x_img"></text>
+                </view>
+            </view>
+
+        </view>
+    </view>
+
+    <!-- 详情照片上传 -->
+    <view class="cu-form-group" style="margin-top: 40rpx;">
+        <view class='title'>
+            <text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>商品详情图片（{{detailImg.length}}/5）</text>
+        </view>
+    </view>
+    <view class="cu-form-group">
+        <view class="grid col-5 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{detailImg}}" wx:key="index" bindtap="PWDeatailImg" data-url="{{detailImg[index]}}">
+                <image src='{{detailImg[index]}}' mode='aspectFill'></image>
+                <view class="cu-tag bg-red" catchtap="DEDetailImg" data-index="{{index}}" data-img="{{detailImg[index]}}">
+                    <text class="iconfont icon_x_img"></text>
+                </view>
+            </view>
+            <view class="solids" bindtap="DetailImg" wx:if="{{detailImg.length<5}}">
+                <text class="iconfont icon_add_img"></text>
+            </view>
+        </view>
+    </view>
+
+    <view class="input_button">
+        <!-- 关闭输入框 -->
+        <view class="bg_blue cancle_btn" bindtap="closeInput">取 消</view>
+        <!-- 确认提交 -->
+        <view class="bg_green confirm_btn" data-id="{{id}}" bindtap="confirmSubmit">确认添加</view>
+    </view>
+</view>

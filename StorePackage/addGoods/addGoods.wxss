@@ -1,0 +1,55 @@
+/* StorePackage/addGoods/addGoods.wxss */
+.box {
+    margin: 15rpx;
+    padding: 15rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+
+/* 输入框 */
+.input_item {
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px #42A5F5 solid;
+}
+
+.input_item input {
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+/* 按钮 */
+.input_button {
+    margin-top: 10rpx;
+    width: 100%;
+    height: 80rpx;
+    display: inline-flex;
+    color: #fff;
+}
+
+.input_button view {
+    width: 50%;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+}
+
+.cancle_btn {
+    border-top-left-radius: 10rpx;
+    border-bottom-left-radius: 10rpx;
+}
+
+.confirm_btn {
+    border-top-right-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+}
+
+.bg_blue {
+    background-color: #42A5F5;
+}
+
+.bg_green {
+    background-color: green;
+}

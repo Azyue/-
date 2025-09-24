@@ -1,0 +1,18 @@
+<!--StorePackage/editChef/chefCuisine/chefCuisine.wxml-->
+<!-- 输入框 -->
+<view class="input_box">
+	<view class="input_title text_grey">修改菜系</view>
+	<view class="input_item">
+        <view>菜系：</view>
+		<input class="text_blue" maxlength="300" auto-focus="true" placeholder="输入菜系" value="{{chefCuisine}}" bindinput="inputData"></input>
+	</view>
+
+	<view class="tips text_tips_spring">【提示】:点击填写完整信息后，点击确定修改。</view>
+	<view class="input_button">
+		<!-- 关闭输入框 -->
+		<view class="bg_blue cancle_btn" bindtap="close">取 消</view>
+		<!-- 确认提交 -->
+		<view class="bg_green confirm_btn" data-id="{{id}}" bindtap="confirmSubmit">确认修改</view>
+	</view>
+</view>
+

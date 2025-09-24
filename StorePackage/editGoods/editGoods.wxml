@@ -1,0 +1,41 @@
+<!--Adminpackage/editGoods/editGoods.wxml-->
+<view class="edit_box">
+    <view class="input_title">修改商品价格</view>
+    <view class="edit_item" data-id="{{id}}" bindtap="navigateToName">
+        <text>商品：</text><text class="text_blue">{{goodsName}}</text>
+    </view>
+    <view class="edit_item" data-id="{{id}}" bindtap="navigateToPrice">
+        <text>商品：</text><text class="text_red">{{Price}}</text><text class="text_grey">{{PriceUnit}}</text>
+    </view>
+    <view class="edit_item" data-id="{{id}}" bindtap="navigateToCuisine">
+        <text>菜系：</text><text class="text_blue">{{cuisine?cuisine:'未设置'}}</text>
+    </view>
+    <view class="tips text_tips_spring">【提示】:点击跳转修改</view>
+    <!-- 封面照片 -->
+    <view class="cu-form-group" style="margin-top: 40rpx;">
+        <view class='title'>
+            <text decode="true">&nbsp;&nbsp;<text decode="true" style="color: #EE0A24;">*</text>封面图片（{{coverImg.length}}/1）</text>
+        </view>
+    </view>
+    <view class="cu-form-group" data-id="{{id}}" bindtap="navigateTocImg">
+        <view class="grid col-3 grid-square flex-sub">
+            <view class="bg-img">
+                <image src='{{coverImg}}' mode='aspectFill'></image>
+            </view>
+        </view>
+    </view>
+
+    <!-- 详情照片 -->
+    <view class="cu-form-group" style="margin-top: 40rpx;">
+        <view class='title'>
+            <text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>详情图片（{{detailImg.length}}/5）</text>
+        </view>
+    </view>
+    <view class="cu-form-group" data-id="{{id}}" bindtap="navigateTodImg">
+        <view class="grid col-5 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{detailImg}}" wx:key="index">
+                <image src='{{detailImg[index]}}' mode='aspectFill'></image>
+            </view>
+        </view>
+    </view>
+</view>

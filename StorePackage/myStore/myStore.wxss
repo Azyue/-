@@ -1,0 +1,43 @@
+/* StorePackage/myStore/myStore.wxss */
+/* 修改店铺信息 */
+.input_box {
+    margin: 20rpx;
+    padding: 15rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    border-radius: 15rpx;
+    background-color: #FFF;
+    box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+
+.input_item {
+    margin: 10rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.input_title {
+    width: 200rpx;
+    font-size: 14px;
+}
+
+.input_in {
+    width: 400rpx;
+}
+
+.input_btn {
+    width: 100rpx;
+    height: 50rpx;
+    margin: 10rpx;
+    padding: 10rpx;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+    border-radius: 15rpx;
+    background-color: #00CD66;
+}
+
+
+

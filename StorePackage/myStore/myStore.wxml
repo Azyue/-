@@ -1,0 +1,195 @@
+<!--StorePackage/myStore/myStore.wxml-->
+<!-- 被禁用商店信息 -->
+<view class="store_info_box" wx:if="{{forbidden == true}}" wx:for="{{StoreInfo}}" wx:key='_id'>
+    <view class="store_info_title">我的店铺信息</view>
+    <view class="store_info_text_h2">店长：<text class="text_grey">{{item.bossName}}</text></view>
+    <view class="store_info_text_h2">电话：<text class="text_grey">{{item.bossPhone}}</text></view>
+    <view class="store_info_text_h2">店铺名字：<text class="text_grey">{{item.storeName}}</text></view>
+    <view class="store_info_text_h2">店铺简介：<text class="text_grey">{{item.storeIntro}}</text></view>
+    <view class="store_info_text_h2">店铺地址：<text class="text_grey">{{item.AddressName}}</text></view>
+    <view class="store_info_text_h2">详细地址：<text class="text_grey">{{item.Address}}</text></view>
+    <view class="store_info_text_h2 text_tips_red" style="margin-top: 20rpx;">说明：店铺“已禁用”请联系客服人员！</view>
+    <view class="store_info_text_h2 text_tips_red" style="margin-top: 20rpx;">禁用时间：{{item.ForbiddenTime}}</view>
+    <button open-type='contact' type="primary">联系客服</button>
+</view>
+
+<!-- 正常商店信息 -->
+<view wx:if="{{forbidden == false}}">
+    <view class="store_info_box" wx:for="{{StoreInfo}}" wx:key='_id'>
+        <view class="store_info_title">我的店铺信息</view>
+        <view class="store_info_text_h2">店长：<text class="text_grey">{{item.bossName}}</text></view>
+        <view class="store_info_text_h2">电话：<text class="text_grey">{{item.bossPhone}}</text></view>
+        <view class="store_info_text_h2">店铺名字：<text class="text_grey">{{item.storeName}}</text></view>
+        <view class="store_info_text_h2">店铺简介：<text class="text_grey">{{item.storeIntro}}</text></view>
+        <view class="store_info_text_h2">店铺地址：<text class="text_grey">{{item.AddressName}}</text></view>
+        <view class="store_info_text_h2">详细地址：<text class="text_grey">{{item.Address}}</text></view>
+        <view class="store_info_text_h2 text_tips_spring" style="margin-top: 20rpx;">说明：以上信息如需“修改”请联系客服人员</view>
+    </view>
+
+    <!-- 导航栏 -->
+    <view class="nav_box">
+        <view class="nav_item" data-type="swiper" bindtap="ChangeTab">
+            <text class="{{swiperNav?'nav_color':''}}">轮播图</text>
+        </view>
+        <view class="nav_item" data-type="cover" bindtap="ChangeTab">
+            <text class="{{coverNav?'nav_color':''}}">封面图</text>
+        </view>
+        <view class="nav_item" data-type="store" bindtap="ChangeTab">
+            <text class="{{storeNav?'nav_color':''}}">店铺</text>
+        </view>
+        <view class="nav_item" data-type="goods" bindtap="ChangeTab">
+            <text class="{{goodsNav?'nav_color':''}}">商品</text>
+        </view>
+        <!-- <view class="nav_item" data-type="chef" bindtap="ChangeTab">
+            <text class="{{chefNav?'nav_color':''}}">厨师</text>
+        </view> -->
+    </view>
+
+    <view wx:if="{{swiperNav}}">
+        <!-- 添加轮播图 -->
+        <view class="add_box">
+            <view>编辑轮播图</view>
+            <image src="/images/add.png" bindtap="addSwiper"></image>
+        </view>
+
+        <!-- 轮播图 -->
+        <view class="stor_info_swiper_box" wx:if="{{bannerImg!=''}}">
+            <swiper autoplay="true" circular="true">
+                <block wx:for="{{bannerImg}}" wx:key="key">
+                    <swiper-item>
+                        <image mode="aspectFit" src="{{item}}"></image>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!-- 没有数据 -->
+        <view class="nothing text_blue" wx:if="{{bannerImg.length == ''}}">
+            <image src="/images/nothing.png"></image>
+            <view>暂时没有轮播图数据！</view>
+        </view>
+    </view>
+
+    <view wx:if="{{coverNav}}">
+        <!-- 添加封面图 -->
+        <view class="add_box">
+            <view>编辑封面图</view>
+            <image src="/images/add.png" bindtap="addCoverImg"></image>
+        </view>
+
+        <!-- 封面 -->
+        <view class="cover_box" wx:for="{{coverImg}}" wx:key="key">
+            <image src="{{item}}"></image>
+        </view>
+        <!-- 没有数据 -->
+        <view class="nothing text_blue" wx:if="{{coverImg.length == ''}}">
+            <image src="/images/nothing.png"></image>
+            <view>暂时没有封面数据！</view>
+        </view>
+    </view>
+
+
+    <view wx:if="{{storeNav}}">
+        <!-- 输入框 -->
+        <view class="input_box">
+            <view class="input_item">
+                <view class='input_title'>特色：</view>
+                <textarea class="input_in text_blue" placeholder="请输入特色" value="{{feat}}" maxlength='200' auto-height="true" data-key="feat" bindinput="InputData"></textarea>
+                <view class='input_btn' bindtap="addfeatBtn">修改</view>
+            </view>
+            <view class="tips text_tips_spring">说明：根据店内特色“修改”信息</view>
+        </view>
+        <!-- 输入框 -->
+        <view class="input_box">
+            <view class="input_item">
+                <view class='input_title'>分类：</view>
+                <textarea class="input_in text_blue" placeholder="请输入菜系" value="{{cuisine}}" maxlength='200' auto-height="true" data-key="cuisine" bindinput="InputData"></textarea>
+                <view class='input_btn' bindtap="addCuisineBtn">修改</view>
+            </view>
+            <view class="tips text_tips_spring">说明：根据店内分类“修改”信息</view>
+        </view>
+        <!-- 输入框 -->
+        <view class="input_box">
+            <view class="input_item">
+                <view class='input_title'>人均消费：</view>
+                <input class="input_in text_blue" type="number" placeholder="请输入人均消费" value="{{Price}}" maxlength='30' auto-height="true" data-key="Price" bindinput="InputData"></input>
+                <view class='input_btn' bindtap="addAvgBtn">修改</view>
+            </view>
+            <view class="tips text_tips_spring">说明：根据店内人均消费“修改”信息</view>
+        </view>
+        <!-- 输入框 -->
+        <view class="input_box">
+            <view class="input_item">
+                <view class='input_title'>店铺简介：</view>
+                <textarea class="input_in text_blue" placeholder="请输入店铺简介：" value="{{storeIntro}}" maxlength='200' auto-height="true" data-key="storeIntro" bindinput="InputData"></textarea>
+                <view class='input_btn' bindtap="addIntroBtn">修改</view>
+            </view>
+            <view class="tips text_tips_spring">说明：根据店铺简介“修改”信息</view>
+        </view>
+    </view>
+
+    <view wx:if="{{goodsNav}}">
+        <!-- 添加商品 -->
+        <view class="add_box">
+            <view>添加商品</view>
+            <image src="/images/add.png" bindtap="addGoods"></image>
+        </view>
+
+        <!-- 商品卡片 -->
+        <view class="card" wx:for='{{goodsList}}' wx:key="index" data-id="{{item._id}}" data-name="{{item.goodsName}}" data-img="{{item.coverImg}}" data-dimg="{{item.detailImg}}" bindlongtap="longPressGoods">
+            <view class="card_img">
+                <image src="{{item.coverImg}}"></image>
+            </view>
+            <view class="card_text">
+                <view class="card_text_h1">{{index+1}}、<text class="text_grey">{{item.goodsName}}</text></view>
+                <view class='score_box' wx:if="{{item.score}}">
+                    星级：
+                    <block wx:for="{{item.score}}" wx:key="index">
+                        <image src="/images/star_on.png" />
+                    </block>
+                </view>
+                <view class="card_text_h2">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+                <view class="card_text_h2" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+                <view class="tips text_tips_spring">说明：“长按”卡片“修改”信息。</view>
+            </view>
+        </view>
+        <!-- 没有数据 -->
+        <view class="nothing text_blue" wx:if="{{goodsList.length == ''}}">
+            <image src="/images/nothing.png"></image>
+            <view>暂时没有商品数据！</view>
+        </view>
+    </view>
+
+    <view wx:if="{{chefNav}}">
+        <!-- 添加厨师 -->
+        <view class="add_box">
+            <view>添加厨师</view>
+            <image src="/images/add.png" bindtap="addChef"></image>
+        </view>
+
+        <!-- 厨师卡片 -->
+        <view class="card" wx:for='{{chefList}}' wx:key="index" data-id="{{item._id}}" data-name="{{item.chefName}}" data-img="{{item.chefImg}}" data-cimg="{{item.cuisineImg}}" bindlongtap="longPressChef">
+            <view class="card_img">
+                <image src="{{item.chefImg}}"></image>
+            </view>
+            <view class="card_text">
+                <view class="card_text_h1">{{index+1}}、厨师：{{item.chefName}}</view>
+                <view class='score_box' wx:if="{{item.score}}">
+                    星级：
+                    <block wx:for="{{item.score}}" wx:key="index">
+                        <image src="/images/star_on.png" />
+                    </block>
+                </view>
+                <view class="card_text_h2">擅长菜：<text class="text_red">{{item.chefCuisine}}</text></view>
+                <view class="card_text_h2">所属店铺：<text class="text_red">{{item.storeName}}</text></view>
+                <view class="tips text_tips_spring">说明：“长按”卡片“修改”信息。</view>
+            </view>
+        </view>
+        <!-- 没有数据 -->
+        <view class="nothing text_blue" wx:if="{{chefList.length == ''}}">
+            <image src="/images/nothing.png"></image>
+            <view>暂时没有厨师数据！</view>
+        </view>
+    </view>
+</view>
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>

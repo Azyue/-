@@ -1,0 +1,167 @@
+/* StorePackage/chefDetail/chefDetail.wxss */
+/* 轮播图 */
+.swiper swiper {
+	height: 600rpx;
+}
+
+.swiper image {
+	width: 100%;
+	height: 100%;
+}
+
+/* 店铺信息 */
+.store_card {
+	margin: 10rpx 20rpx;
+	padding: 15rpx;
+	border-radius: 15rpx;
+	display: flex;
+	background-color: #fff;
+}
+
+.store_card_img {
+	width: 25%;
+	height: 180rpx;
+}
+
+.store_card_img image {
+	width: 100%;
+	height: 100%;
+	border-radius: 10rpx;
+	overflow: hidden;
+}
+
+.store_card_info {
+	width: 75%;
+}
+
+.store_card_info view {
+	margin-top: 10rpx;
+	margin-left: 10rpx;
+}
+
+.store_text_h1 {
+	font-size: 16px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.store_text_h2 {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.store_text_h3 {
+	font-size: 12px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+/* 字体颜色 */
+.text_grey {
+	color: grey;
+}
+
+.text_red {
+	color: #e26843;
+}
+
+.text_blue {
+	color: #0081ff;
+}
+
+.text_tips {
+	color: rgb(33, 207, 111);
+}
+
+/* 评分 */
+.score_box {
+	height: 50rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: start;
+}
+
+.score_box image {
+	width: 35rpx;
+	height: 35rpx;
+	margin-right: 12rpx;
+}
+
+/* 详情图片 */
+.detail_img_box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 120rpx;
+	margin: 20rpx;
+	border-radius: 15rpx;
+	background-color: #fff;
+}
+
+.detail_img {
+	margin: 20rpx;
+	padding: 15rpx;
+	width: 600rpx;
+	height: 500rpx;
+}
+
+.detail_img image {
+	width: 100%;
+	height: 100%;
+	border-radius: 10rpx;
+	overflow: hidden;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 底部导航栏 */
+
+.footer_nav {
+	width: 100%;
+	height: 120rpx;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	border-top: 1rpx solid #f0f0f0;
+	background-color: #fff;
+}
+
+.footer_left {
+	width: 50%;
+	height: 120rpx;
+	padding-top: 3px;
+	display: inline-block;
+}
+
+.footer_item {
+	width: 120rpx;
+	height: 120rpx;
+	margin-left: 30rpx;
+	display: inline-block;
+	text-align: center;
+}
+
+.footer_item image {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.footer_right {
+	width: 50%;
+	height: 120rpx;
+	line-height: 120rpx;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	float: right;
+	background-color: #efb336;
+}

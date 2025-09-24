@@ -1,0 +1,130 @@
+<!--StorePackage/storeDetail/storeDetail.wxml-->
+<!-- 轮播图 -->
+<view class="swiper" wx:if="{{bannerImg[0]}}">
+    <swiper indicator-dots="true" autoplay="true" circular="true" interval="2000">
+        <block wx:for="{{bannerImg}}" wx:key="index">
+            <swiper-item>
+                <image src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<!-- 店铺信息 -->
+
+<view class="store_card" wx:for='{{StoreInfo}}' wx:key="index">
+    <view class="store_card_img">
+        <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+    </view>
+    <view class="store_card_info">
+        <view class="store_card_text_row_box">
+            <view class="store_text_h1">店铺：<text class="text_grey">{{item.storeName}}</text></view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class='score_box' wx:if="{{item.score}}">
+                <text class="store_text_h2">星级：</text>
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class="store_text_h3">电话：<text class="text_blue" style="font-size: 16px;">{{item.bossPhone}}</text></view>
+            <view class="store_text_h3" wx:if="{{item.Price}}">均价：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text></view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class="store_text_h3" wx:if="{{item.feat}}">特色：<text class="text_grey">{{item.feat}}</text></view>
+            <view class="store_text_h3" wx:if="{{item.cuisine}}">分类：<text class="text_grey">{{item.cuisine}}</text></view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class="store_text_h3">简介：<text class="text_grey">{{item.storeIntro}}</text></view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class="store_text_h3">地址：<text class="text_grey">{{item.AddressName}}</text></view>
+            <view class="store_text_h3">距离：<text class="text_grey">{{Distance}} km</text>
+            </view>
+        </view>
+        <view class="store_card_text_row_box">
+            <view class="store_text_h3">详细地址：<text class="text_grey">{{item.Address}}</text></view>
+        </view>
+    </view>
+</view>
+
+<!-- 导航栏 -->
+<view class="nav_box">
+    <view class="nav_item" data-type="goods" bindtap="ChangeTab">
+        <text class="{{goodsNav?'nav_color':''}}">商品列表</text>
+    </view>
+    <!-- <view class="nav_item" data-type="chef" bindtap="ChangeTab">
+        <text class="{{chefNav?'nav_color':''}}">厨师列表</text>
+    </view> -->
+</view>
+
+<!-- 列表 -->
+<view wx:if="{{goodsNav}}" class="card_box">
+    <!-- 商品卡片 -->
+    <view class="card" wx:for='{{goodsList}}' wx:key="index" data-id="{{item._id}}" bindtap="goGoodsDetail">
+        <view class="card_img">
+            <image src="{{item.coverImg}}"></image>
+        </view>
+        <view class="card_text">
+            <view class="card_text_h1">{{index+1}}、商品：{{item.goodsName}}</view>
+            <view class='score_box' wx:if="{{item.score}}">
+                星级：
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="card_text_h2">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+            <view class="card_text_h2" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+            <view class="tips text_tips_spring">提示：“点击”卡片可查看详细信息</view>
+        </view>
+    </view>
+    <view class="nothing text_blue" wx:if="{{goodsList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有商品数据！</view>
+    </view>
+</view>
+
+<view wx:if="{{chefNav}}" class="card_box">
+    <!-- 厨师卡片 -->
+    <view class="card" wx:for='{{chefList}}' wx:key="index" data-id="{{item._id}}" bindtap="goChefDetail">
+        <view class="card_img">
+            <image src="{{item.chefImg}}"></image>
+        </view>
+        <view class="card_text">
+            <view class="card_text_h1">{{index+1}}、厨师：{{item.chefName}}</view>
+            <view class='score_box' wx:if="{{item.score}}">
+                星级：
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="card_text_h2">擅长菜：<text class="text_red">{{item.chefCuisine}}</text></view>
+            <view class="card_text_h2">所属店铺：<text class="text_red">{{item.storeName}}</text></view>
+            <view class="tips text_tips_spring">提示：“点击”卡片可查看详细信息</view>
+        </view>
+    </view>
+    <view class="nothing text_blue" wx:if="{{chefList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有商品数据！</view>
+    </view>
+</view>
+
+<!-- 底部导航栏 -->
+<view class="footer_nav">
+    <view class="footer_left">
+        <view class="footer_item" bindtap="addCollection">
+            <image src="/images/{{hasCollection?'collection_on':'collection_off'}}.png"></image>
+            <view>{{hasCollection?'已收藏':'未收藏'}}</view>
+        </view>
+        <view class="footer_item" bindtap="navRoad">
+            <image src="/images/navRoad.png"></image>
+            <view>导航</view>
+        </view>
+    </view>
+
+    <block wx:for="{{StoreInfo}}" wx:key="index">
+        <view class="footer_right main_bg_color" data-phone="{{item.bossPhone}}" data-remark="{{item.StoreName}}" bindtap="CallPhone">电话预约</view>
+    </block>
+</view>

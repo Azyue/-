@@ -1,0 +1,20 @@
+<!--StorePackage/editGoods/goodsPrice/goodsPrice.wxml-->
+<!-- 输入框 -->
+<view class="input_box">
+	<view class="input_title text_grey">修改商品价格</view>
+	<view class="input_item">
+        <view>价格：</view>
+		<input class="text_blue" type="number" auto-focus="true" maxlength="30" placeholder="输入价格" value="{{Price}}" bindinput="inputData"></input>
+        <picker mode="multiSelector" value="{{PriceSelected}}" range="{{PriceList}}" bindchange="PriceChange">
+            <text>单位：</text><text class="text_blue">{{PriceUnit?PriceUnit:'选择单位'}}</text>
+        </picker>
+	</view>
+
+	<view class="tips text_tips_spring">【提示】:点击填写完整信息后，点击确定修改。</view>
+	<view class="input_button">
+		<!-- 关闭输入框 -->
+		<view class="bg_blue cancle_btn" bindtap="close">取 消</view>
+		<!-- 确认提交 -->
+		<view class="bg_green confirm_btn" data-id="{{id}}" bindtap="confirmSubmit">确认修改</view>
+	</view>
+</view>

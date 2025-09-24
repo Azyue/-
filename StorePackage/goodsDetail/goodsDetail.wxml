@@ -1,0 +1,112 @@
+<!--StorePackage/goodsDetail/goodsDetail.wxml-->
+<!-- 轮播图 -->
+<view class="swiper" wx:if="{{swiperImg[0]}}">
+    <swiper indicator-dots="true" autoplay="true" circular="true" interval="2000">
+        <block wx:for="{{swiperImg}}" wx:key="index">
+            <swiper-item>
+                <image src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<!-- 商品信息 -->
+<block wx:for="{{DataList}}" wx:key="index">
+    <view class="store_card">
+        <view class="store_card_img">
+            <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+        </view>
+        <view class="store_card_info">
+            <view class="store_text_h1">商品：<text class="text_grey">{{item.goodsName}}</text></view>
+            <view class='score_box' wx:if="{{item.score}}">
+                <text class="store_text_h2">星级：</text>
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="store_text_h3">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+            <view class="store_text_h3" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+            <view class="store_text_h3">店铺：<text class="text_grey">{{item.storeName}}</text></view>
+        </view>
+    </view>
+
+    <!-- 详情图片 -->
+    <view class="detail_img_box">
+        <view class="detail_img" wx:for='{{swiperImg}}' wx:key="index">
+            <image src="{{item}}" data-url="{{swiperImg[index]}}" bindtap="ViewDImage"></image>
+        </view>
+    </view>
+
+    <!-- 评论入口 -->
+    <view class="comm_into" data-id="{{item._id}}" bindtap="goComment">
+        <image src="/images/comment.png"></image>
+        <view>发表你的评论</view>
+    </view>
+
+
+    <!-- 评论区 -->
+    <view class="comm_box">
+        <block wx:for="{{CommList}}" wx:key="index">
+            <view class="comm_item">
+                <view class="comm_info_box">
+                    <view class="comm_avatarUrl">
+                        <!-- 评论者头像 -->
+                        <image src="{{item.CommAvatarUrl}}"></image>
+                    </view>
+                    <view class="comm_nickName">
+                        <!-- 评论者昵称 -->
+                        <view class="comm_text_h1">{{item.CommNickName}}</view>
+                        <!-- 评论时间 -->
+                        <view class="comm_text_h3">{{item.CommTime}}</view>
+                    </view>
+                </view>
+                <!-- 评分星级 -->
+                <view class='score_box' wx:if="{{item.CommScore}}">
+                    <text>评分：</text>
+                    <block wx:for="{{item.CommScore}}" wx:key="index">
+                        <image src="/images/star_on.png" />
+                    </block>
+                </view>
+                <!-- 评论内容 -->
+                <scroll-view class="comm_text" scroll-y="true">
+                    {{item.CommText}}
+                </scroll-view>
+
+                <!-- 评论图片/视频 -->
+                <view class="cu-form-group" style="padding-left:5px;">
+                    <view class="grid col-5 grid-square flex-sub">
+                        <view class="bg-img" wx:for="{{item.CommImg}}"wx:key="index">
+                            <image src='{{item}}' mode='aspectFill' bindtap="preViewMedia" data-pic="{{item}}"></image>
+                        </view>
+                        <view class="bg-img" wx:for="{{item.CommVide}}"wx:key="index">
+                            <video style="width: 120rpx; height: 120rpx;" src="{{item}}" bindtap="preViewMedia" data-pic="{{item}}" object-fit="cover"></video>
+                        </view>
+                    </view>
+                </view>
+                <view class="delete" wx:if="{{item._openid == openId}}">
+                    <view class="delete_text" data-id="{{item._id}}" data-img="{{item.CommImg}}" bindtap="deleteComm">删除</view>
+                    <image src="/images/delete.png" data-id="{{item._id}}" data-img="{{item.CommImg}}" data-vide="{{item.CommVide}}" bindtap="deleteComm"/>
+                </view>
+            </view>
+        </block>
+    </view>
+
+    <!-- 底部填充盒子 -->
+    <view class="bottom_box"></view>
+
+
+    <!-- 底部导航栏 -->
+    <view class="footer_nav">
+        <view class="footer_left">
+            <view class="footer_item" bindtap="addCollection">
+                <image src="/images/{{hasCollection?'collection_on':'collection_off'}}.png"></image>
+                <view>{{hasCollection?'已收藏':'未收藏'}}</view>
+            </view>
+            <view class="footer_item" data-id="{{item.storeId}}" bindtap="goStore">
+                <image src="/images/store.png"></image>
+                <view>店铺</view>
+            </view>
+        </view>
+        <view class="footer_right main_bg_color" data-phone="{{item.bossPhone}}" bindtap="CallPhone">电话预约</view>
+    </view>
+</block>
