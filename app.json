@@ -1,0 +1,107 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/near/near",
+    "pages/chef/chef",
+    "pages/me/me",
+    "pages/login/login",
+    "pages/mycollection/mycollection",
+    "pages/comment/comment"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ef3636",
+    "navigationBarTitleText": "小吃地图",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#B0B0B0",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ef3636",
+    "borderStyle": "white",
+    "list": [{
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_select.png"
+      },
+      {
+        "pagePath": "pages/near/near",
+        "text": "地点推荐",
+        "iconPath": "/images/near.png",
+        "selectedIconPath": "/images/near_select.png"
+      },
+
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/images/me.png",
+        "selectedIconPath": "/images/me_select.png"
+      }
+    ]
+  },
+  "subpackages": [{
+      "root": "StorePackage",
+      "name": "StorePacket",
+      "pages": [
+        "myStore/myStore",
+        "storeDetail/storeDetail",
+        "registerStore/registerStore",
+        "addBanner/addBanner",
+        "addCover/addCover",
+        "addGoods/addGoods",
+        "editGoods/editGoods",
+        "goodsDetail/goodsDetail",
+        "editGoods/goodsName/goodsName",
+        "editGoods/goodsPrice/goodsPrice",
+        "editGoods/goodsCuisine/goodsCuisine",
+        "editGoods/coverImg/coverImg",
+        "editGoods/detailImg/detailImg",
+        "addChef/addChef",
+        "editChef/editChef",
+        "chefDetail/chefDetail",
+        "editChef/chefName/chefName",
+        "editChef/chefCuisine/chefCuisine",
+        "editChef/chefImg/chefImg",
+        "editChef/cuisineImg/cuisineImg"
+      ]
+    },
+    {
+      "root": "Adminpackage",
+      "name": "adminpacket",
+      "pages": [
+        "adminHome/adminHome",
+        "storeAuditList/storeAuditList",
+        "storeApprovoedList/storeApprovoedList",
+        "storeAudit/storeAudit",
+        "storeApprovoed/storeApprovoed",
+        "miniApp/miniApp",
+        "addBanner/addBanner",
+        "addCuisine/addCuisine",
+        "addHotCity/addHotCity",
+        "admin/admin",
+        "addAdmin/addAdmin",
+        "goodsScore/goodsScore",
+        "chefScore/chefScore",
+        "storeScore/storeScore",
+        "editStore/editStore",
+        "commentList/commentList",
+        "commentAudit/commentAudit",
+        "storeManage/storeManage",
+        "storeManageAdd/storeManageAdd",
+        "storeManageList/storeManageList",
+        "storeManageDetail/storeManageDetail"
+      ]
+    }
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "使用地图功能需授权位置信息"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
