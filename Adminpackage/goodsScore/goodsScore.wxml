@@ -1,0 +1,43 @@
+<!--Adminpackage/goodsScore/goodsScore.wxml-->
+<!-- 商品卡片 -->
+<view class="card">
+    <view class="card_img">
+        <image src="{{coverImg != ''?coverImg:'/images/image.png'}}" bindtap="PWCoverImg"></image>
+    </view>
+    <view class="card_text">
+        <view class="card_text_h1">商品：<text class="text_grey">{{goodsName}}</text></view>
+        <view class="card_text_h2">价格：<text class="text_red" style="font-size: 16px;">￥{{Price}}</text><text class="text_grey"> {{PriceUnit}}</text></view>
+        <view class="card_text_h2" wx:if="{{cuisine}}">菜系：<text class="text_grey">{{cuisine}}</text></view>
+        <view class="card_text_h2">店铺：<text class="text_grey">{{storeName}}</text></view>
+    </view>
+</view>
+
+<!-- 详情照片 -->
+<view class="store_info_box">
+    <view class="cu-form-group" style="margin-top: 40rpx;">
+        <view class='title'>
+            <text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>详情图片（{{detailImg.length}}/5）</text>
+        </view>
+    </view>
+    <view class="cu-form-group">
+        <view class="grid col-5 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{detailImg}}" wx:key="index">
+                <image src='{{detailImg[index]}}' mode='aspectFill' bindtap="PWDeatailImg" data-url="{{detailImg[index]}}"></image>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 提交评分 -->
+<view class="store_info_box">
+    <view class='score_ed_box'>
+        <view>商品评分：</view>
+        <view>
+            <block wx:for-items="{{score_img_arr}}" wx:for-item="img" wx:key="index">
+                <image bindtap='onScore' data-score='{{index+1}}' src="{{img}}" />
+            </block>
+        </view>
+        <view class="score_ed_text">{{score_text}}</view>
+    </view>
+    <button type="primary" bindtap="SubmitScore">提交评分</button>
+</view>

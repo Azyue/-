@@ -1,0 +1,61 @@
+/* Adminpackage/editStore/editStore.wxss */
+/* 输入框盒子 */
+.input_box {
+	margin: 15rpx;
+	padding: 15rpx;
+	border-radius: 15rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	background-color: #fff;
+	box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+/* 输入框项 */
+.input_item {
+	margin: 10rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+}
+
+/* 店铺位置 */
+.address_box{
+    margin: 15rpx;
+	padding: 15rpx;
+	border-radius: 15rpx;
+    display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+
+/* 清除键按钮图标 */
+.clear_img {
+	z-index: 999;
+	padding: 10rpx;
+	width: 60rpx;
+	height: 60rpx;
+}
+
+/* 选择位置按钮图标 */
+.choose_img {
+	width: 100rpx;
+	height: 100rpx;
+}
+
+/* 位置信息 */
+.address {
+	width: 240rpx;
+	height: auto;
+	font-size: 14px;
+	color: #42A5F5;
+}
+
+/* 确认按钮 */
+.submitbtn {
+	margin: 20px;
+	width: 100%;
+	color: #fff;
+	box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}

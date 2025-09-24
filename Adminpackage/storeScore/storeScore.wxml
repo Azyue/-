@@ -1,0 +1,122 @@
+<!--Adminpackage/storeScore/storeScore.wxml-->
+<!-- 商店信息 -->
+<view class="store_info_box" wx:for="{{StoreInfo}}" wx:key='_id'>
+    <view class="store_info_title">店铺信息</view>
+    <view class="store_info_text_h2">店长：<text class="text_blue">{{item.bossName}}</text></view>
+    <view class="store_info_text_h2">电话：<text class="text_blue">{{item.bossPhone}}</text></view>
+    <view class="store_info_text_h2">店铺名字：<text class="text_blue">{{item.storeName}}</text></view>
+    <view class="store_info_text_h2">人均消费：<text class="text_blue">{{item.Price?item.Price:'未设置'}}</text></view>
+    <view class="store_info_text_h2">特色：<text class="text_blue">{{item.feat?item.feat:'未设置'}}</text></view>
+    <view class="store_info_text_h2">菜系：<text class="text_blue">{{item.cuisine?item.cuisine:'未设置'}}</text></view>
+    <view class="store_info_text_h2">店铺简介：<text class="text_blue">{{item.storeIntro?item.storeIntro:'未设置'}}</text></view>
+    <view class="store_info_text_h2">店铺地址：<text class="text_blue">{{item.AddressName}}</text></view>
+    <view class="store_info_text_h2">详细地址：<text class="text_blue">{{item.Address}}</text></view>
+</view>
+
+<!-- 提交评分 -->
+<view class="store_info_box">
+    <view class='score_ed_box'>
+        <view>店铺评分：</view>
+        <view>
+            <block wx:for-items="{{score_img_arr}}" wx:for-item="img" wx:key="index">
+                <image bindtap='onScore' data-score='{{index+1}}' src="{{img}}" />
+            </block>
+        </view>
+        <view class="score_ed_text">{{score_text}}</view>
+    </view>
+    <button type="primary" bindtap="SubmitScore">提交评分</button>
+</view>
+
+<!-- 导航栏 -->
+<view class="nav_box">
+    <view class="nav_item" data-type="swiper" bindtap="ChangeTab">
+        <text class="{{swiperNav?'nav_color':''}}">轮播图</text>
+    </view>
+    <view class="nav_item" data-type="cover" bindtap="ChangeTab">
+        <text class="{{coverNav?'nav_color':''}}">封面图</text>
+    </view>
+    <view class="nav_item" data-type="goods" bindtap="ChangeTab">
+        <text class="{{goodsNav?'nav_color':''}}">商品</text>
+    </view>
+    <view class="nav_item" data-type="chef" bindtap="ChangeTab">
+        <text class="{{chefNav?'nav_color':''}}">厨师</text>
+    </view>
+</view>
+
+<view wx:if="{{swiperNav}}">
+    <!-- 轮播图 -->
+    <view class="stor_info_swiper_box" wx:if="{{bannerImg!=''}}">
+        <swiper autoplay="true" circular="true">
+            <block wx:for="{{bannerImg}}" wx:key="key">
+                <swiper-item>
+                    <image mode="aspectFit" src="{{item}}"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="nothing text_blue" wx:if="{{bannerImg.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有轮播图数据！</view>
+    </view>
+</view>
+
+<view wx:if="{{coverNav}}">
+    <!-- 封面 -->
+    <view class="cover_box" wx:for="{{coverImg}}" wx:key="key">
+        <image src="{{item}}"></image>
+    </view>
+    <view class="nothing text_blue" wx:if="{{coverImg.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有封面数据！</view>
+    </view>
+</view>
+
+<view wx:if="{{goodsNav}}">
+    <!-- 商品卡片 -->
+    <view class="card" wx:for='{{goodsList}}' wx:key="index">
+        <view class="card_img">
+            <image src="{{item.coverImg}}"></image>
+        </view>
+        <view class="card_text">
+            <view class="card_text_h1">{{index+1}}、<text class="text_grey">{{item.goodsName}}</text></view>
+            <view class='score_box' wx:if="{{item.score}}">
+                星级：
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="card_text_h2">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+            <view class="card_text_h2" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+        </view>
+    </view>
+    <view class="nothing text_blue" wx:if="{{goodsList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有商品数据！</view>
+    </view>
+</view>
+
+<view wx:if="{{chefNav}}">
+    <!-- 厨师卡片 -->
+    <view class="card" wx:for='{{chefList}}' wx:key="index">
+        <view class="card_img">
+            <image src="{{item.chefImg}}"></image>
+        </view>
+        <view class="card_text">
+            <view class="card_text_h1">{{index+1}}、厨师：{{item.chefName}}</view>
+            <view class='score_box' wx:if="{{item.score}}">
+                星级：
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="card_text_h2">擅长菜：<text class="text_red">{{item.chefCuisine}}</text></view>
+            <view class="card_text_h2">所属店铺：<text class="text_red">{{item.storeName}}</text></view>
+        </view>
+    </view>
+    <view class="nothing text_blue" wx:if="{{chefList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有厨师数据！</view>
+    </view>
+</view>
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>

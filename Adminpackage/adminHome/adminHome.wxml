@@ -1,0 +1,32 @@
+<!--Adminpackage/adminHome/adminHome.wxml-->
+<!-- 九宫格 -->
+<view class="sudoku_root">
+    <view class="sudoku_item" data-url="../storeAuditList/storeAuditList" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/Audit.png"></image>
+        <text class="sudoku_item_title">等待审核</text>
+    </view>
+    <view class="sudoku_item" data-url="../storeApprovoedList/storeApprovoedList" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/Approvoed.png"></image>
+        <text class="sudoku_item_title">审核通过</text>
+    </view>
+    <view class="sudoku_item" data-url="../storeManage/storeManage" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/store-gl.png"></image>
+        <text class="sudoku_item_title">店铺管理</text>
+    </view>
+</view>
+<view class="sudoku_root">
+    <view class="sudoku_item" data-url="../miniApp/miniApp" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/setting.png"></image>
+        <text class="sudoku_item_title">小程序</text>
+    </view>
+    <view class="sudoku_item" data-url="../admin/admin" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/admin.png"></image>
+        <text class="sudoku_item_title">管理员</text>
+    </view>
+    <view class="sudoku_item" data-url="../commentList/commentList" bindtap="Navigate">
+        <image class="sudoku_item_img" src="/images/commentList.png"></image>
+        <text class="sudoku_item_title">评论管理</text>
+    </view>
+</view>
+<!-- 底部标题 -->
+<view class="bottom_title">后台管理系统</view>

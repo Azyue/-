@@ -1,0 +1,23 @@
+<!--Adminpackage/storeAudit/storeAudit.wxml-->
+<!-- 待审核详情 -->
+<view>
+    <view class="list_box">
+        <text decode="true" class="tips text_tips_spring">【审核提示】</text>
+        <text decode="true" class="tips text_tips_spring">\n 1、请检查上传的内容,如有疑问可拨打电话询问。 \n 2、如果没有问题，点击“通过审核”即可完成审核。</text>
+    </view>
+    <view class="list_box" wx:for="{{StatusList}}" wx:key='key'>
+        <view class="title">店铺信息</view>
+        <view class="desc">姓名：<text class="text_blue">{{item.bossName}}</text></view>
+        <view class="desc" data-phone="{{item.bossPhone}}" bindtap="CallPhone">电话：<text class="text_blue">{{item.bossPhone}}</text> 点击拨打</view>
+        <view class="desc">店铺名字：<text class="text_blue">{{item.storeName}}</text></view>
+        <view class="desc">店铺简介：<text class="text_blue">{{item.storeIntro}}</text></view>
+        <view class="desc">店铺地址：<text class="text_blue">{{item.AddressName}}</text></view>
+        <view class="desc">详细地址：<text class="text_blue">{{item.Address}}</text></view>
+        <view class="desc">用户昵称：<text class="text_blue">{{item.nickName}}</text></view>
+        <view class="desc">上传时间：<text class="text_blue">{{item.ApplyTime}}</text></view>
+        <view class="btn_box">
+            <button class='btn_del' bindtap="deleteshowModal">直接删除</button>
+            <button type="primary" bindtap="DoPublishing">通过审核</button>
+        </view>
+    </view>
+</view>

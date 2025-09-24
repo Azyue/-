@@ -1,0 +1,16 @@
+<!--Adminpackage/storeManageList/storeManageList.wxml-->
+<view class="list_box">
+	<view class="list_item" wx:for="{{DataList}}" wx:key='index' data-id="{{item._id}}" data-state="{{item.Audit}}" bindtap="Navigate">
+		<view class="title">{{index+1}}、店铺：{{item.storeName}}</view>
+		<view class="desc">名字：<text class="text_blue">{{item.bossName}}</text></view>
+		<view class="desc">电话：<text class="text_blue">{{item.bossPhone}}</text></view>
+		<view class="desc">店铺地址：<text class="text_blue">{{item.AddressName}}</text></view>
+		<view class="desc">审核状态：<text class="{{item.Audit ==true?'text_green':'text_red'}}">{{item.Audit ==true?'已审核：':'待审核：'}}{{item.Audit ==true?item.AuditTime:item.ApplyTime}}</text></view>
+        <view class="desc" wx:if="{{item.forbidden == true}}">店铺状态：<text class="text_red">已禁用：{{item.ForbiddenTime}}</text></view>
+		<view class="tips text_tips_spring">说明：点击卡片即可查看已审核详情</view>
+	</view>
+    <view class="nothing text_blue" wx:if="{{DataList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有添加的店铺！</view>
+    </view>
+</view>

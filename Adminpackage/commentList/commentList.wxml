@@ -1,0 +1,55 @@
+<!--Adminpackage/commentList/commentList.wxml-->
+<!-- 评论区 -->
+<view class="comm_box">
+    <block wx:for="{{CommList}}" wx:key="index">
+        <view class="comm_item">
+            <view bindtap="goCommentDetail" data-id="{{item._id}}">
+                <view class="comm_info_box">
+                    <view class="comm_avatarUrl">
+                        <!-- 评论者头像 -->
+                        <image src="{{item.CommAvatarUrl}}"></image>
+                    </view>
+                    <view class="comm_nickName">
+                        <!-- 评论者昵称 -->
+                        <view class="comm_text_h1">{{item.CommNickName}}</view>
+                        <!-- 评论时间 -->
+                        <view class="comm_text_h3">{{item.CommTime}}</view>
+                        <view style="background-color: {{item.CommPublish == true ? 'green':'#FF8C00'}};color: #fff; border-radius: 10rpx; padding: 10rpx;" class="comm_text_h2">{{item.CommPublish == true ?'已发布':'待审核'}}</view>
+                    </view>
+                </view>
+                <!-- 评分星级 -->
+                <view class='score_box' wx:if="{{item.CommScore}}">
+                    <text>评分：</text>
+                    <block wx:for="{{item.CommScore}}" wx:key="index">
+                        <image src="/images/star_on.png" />
+                    </block>
+                </view>
+            </view>
+            <!-- 评论内容 -->
+            <scroll-view class="comm_text" scroll-y="true">
+                {{item.CommText}}
+            </scroll-view>
+
+            <!-- 评论图片/视频 -->
+            <view class="cu-form-group" style="padding-left:5px;">
+                <view class="grid col-5 grid-square flex-sub">
+                    <view class="bg-img" wx:for="{{item.CommImg}}" wx:key="index">
+                        <image src='{{item}}' mode='aspectFill' bindtap="preViewMedia" data-pic="{{item}}"></image>
+                    </view>
+                    <view class="bg-img" wx:for="{{item.CommVide}}" wx:key="index">
+                        <video style="width: 120rpx; height: 120rpx;" src="{{item}}" bindtap="preViewMedia" data-pic="{{item}}" object-fit="cover"></video>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+
+<!-- 没有数据 -->
+<view class="nothing text_blue" wx:if="{{CommList.length == ''}}">
+    <image src="/images/nothing.png"></image>
+    <view>暂时没有内容！</view>
+</view>
+
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>

@@ -1,0 +1,97 @@
+<!--Adminpackage/commentAudit/commentAudit.wxml-->
+<!-- 轮播图 -->
+<view class="swiper" wx:if="{{swiperImg[0]}}">
+    <swiper indicator-dots="true" autoplay="true" circular="true" interval="2000">
+        <block wx:for="{{swiperImg}}" wx:key="index">
+            <swiper-item>
+                <image src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<!-- 店铺信息 -->
+<block wx:for="{{DataList}}" wx:key="index">
+    <view class="store_card">
+        <view class="store_card_img">
+            <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+        </view>
+        <view class="store_card_info">
+            <view class="store_text_h1">商品：<text class="text_grey">{{item.goodsName}}</text></view>
+            <view class='score_box' wx:if="{{item.score}}">
+                <text class="store_text_h2">星级：</text>
+                <block wx:for="{{item.score}}" wx:key="index">
+                    <image src="/images/star_on.png" />
+                </block>
+            </view>
+            <view class="store_text_h3">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text> {{item.PriceUnit}}</view>
+            <view class="store_text_h3" wx:if="{{item.cuisine}}">菜系：<text class="text_grey">{{item.cuisine}}</text></view>
+            <view class="store_text_h3">店铺：<text class="text_grey">{{item.storeName}}</text></view>
+        </view>
+    </view>
+
+    <!-- 详情图片 -->
+    <view class="detail_img_box">
+        <view class="detail_img" wx:for='{{swiperImg}}' wx:key="index">
+            <image src="{{item}}" data-url="{{swiperImg[index]}}"></image>
+        </view>
+    </view>
+</block>
+
+<!-- 评论区 -->
+<view class="comm_box">
+    <block wx:for="{{CommList}}" wx:key="index">
+        <view class="comm_item">
+            <view>
+                <view class="comm_info_box">
+                    <view class="comm_avatarUrl">
+                        <!-- 评论者头像 -->
+                        <image src="{{item.CommAvatarUrl}}"></image>
+                    </view>
+                    <view class="comm_nickName">
+                        <!-- 评论者昵称 -->
+                        <view class="comm_text_h1">{{item.CommNickName}}</view>
+                        <!-- 评论时间 -->
+                        <view class="comm_text_h3">{{item.CommTime}}</view>
+                        <view style="background-color: {{item.CommPublish == true ? 'green':'#FF8C00'}};color: #fff; border-radius: 10rpx; padding: 10rpx;" class="comm_text_h2">{{item.CommPublish == true ?'已发布':'待审核'}}</view>
+                    </view>
+                </view>
+                <!-- 评分星级 -->
+                <view class='score_box' wx:if="{{item.CommScore}}">
+                    <text>评分：</text>
+                    <block wx:for="{{item.CommScore}}" wx:key="index">
+                        <image src="/images/star_on.png" />
+                    </block>
+                </view>
+            </view>
+            <!-- 评论内容 -->
+            <scroll-view class="comm_text" scroll-y="true">
+                {{item.CommText}}
+            </scroll-view>
+
+            <!-- 评论图片/视频 -->
+            <view class="cu-form-group" style="padding-left:5px;">
+                <view class="grid col-5 grid-square flex-sub">
+                    <view class="bg-img" wx:for="{{item.CommImg}}" wx:key="index">
+                        <image src='{{item}}' mode='aspectFill' bindtap="preViewMedia" data-pic="{{item}}"></image>
+                    </view>
+                    <view class="bg-img" wx:for="{{item.CommVide}}" wx:key="index">
+                        <video style="width: 120rpx; height: 120rpx;" src="{{item}}" bindtap="preViewMedia" data-pic="{{item}}" object-fit="cover"></video>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+
+<!-- 按钮 -->
+<view class="btn_box">
+    <block wx:for="{{CommList}}" wx:key="index">
+        <button class='btn_del' data-id="{{item._id}}" data-img="{{item.CommImg}}" data-vide="{{item.CommVide}}" bindtap="deleteComm">直接删除</button>
+        <button wx:if="{{item.CommPublish == false}}" type="primary" bindtap="DoPublishing">通过审核</button>
+        <button wx:if="{{item.CommPublish == true}}" type="primary" bindtap="RevPublishing">撤回审核</button>
+    </block>
+</view>
+
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>

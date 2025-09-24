@@ -1,0 +1,77 @@
+/* Adminpackage/addCuisine/addCuisine.wxss */
+page {
+	width: 100%;
+	height: 100%;
+  }
+  
+  /* 输入框 */
+  .box {
+	margin: 20rpx;
+	padding: 20rpx;
+	border-radius: 10rpx;
+	background-color: #fff;
+  }
+  
+  .input_item {
+	width: 100%;
+	height: 80rpx;
+	line-height: 80rpx;
+	display: inline-flex;
+	border-bottom: 1px #42A5F5 solid;
+  }
+  .input_item label{
+	display: inline-flex;
+	font-size: 15px;
+	font-weight: bold;
+  }
+  
+  .input_item input {
+	padding: 10rpx;
+  }
+  .input_item text {
+	  padding: 10rpx;
+	}
+  
+  
+  .input_desc {
+	margin: 40rpx 0rpx;
+	font-size: 14px;
+	color: grey;
+  }
+  /* 输入框 */
+  
+  /* 按钮 */
+  .input_button {
+	  margin-top: 10rpx;
+	width: 100%;
+	height: 80rpx;
+	display: inline-flex;
+	color: #fff;
+  }
+  
+  .input_button view {
+	width: 50%;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+  }
+  
+  .cancle_btn {
+	border-top-left-radius: 10rpx;
+	border-bottom-left-radius: 10rpx;
+  }
+  
+  .confirm_btn {
+	border-top-right-radius: 10rpx;
+	border-bottom-right-radius: 10rpx;
+  }
+  
+  .bg_blue {
+	background-color: #42A5F5;
+  }
+  
+  .bg_green {
+	background-color: green;
+  }
+  
+  /* 按钮 */

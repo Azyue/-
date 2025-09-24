@@ -1,0 +1,41 @@
+/* StorePackage/addBanner/addBanner.wxss */
+/* 盒子 */
+.box {
+	margin: 10rpx 30rpx;
+	padding: 20rpx;
+	border-radius: 10rpx;
+	background-color: #fff;
+}
+
+/* 按钮 */
+.input_button {
+	width: 100%;
+	height: 80rpx;
+	display: inline-flex;
+	color: #fff;
+}
+
+.input_button view {
+	width: 50%;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+}
+
+.cancle_btn {
+	border-top-left-radius: 10rpx;
+	border-bottom-left-radius: 10rpx;
+}
+
+.confirm_btn {
+	border-top-right-radius: 10rpx;
+	border-bottom-right-radius: 10rpx;
+}
+
+.bg_blue {
+	background-color: #42A5F5;
+}
+
+.bg_green {
+	background-color: green;
+}

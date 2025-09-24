@@ -1,0 +1,67 @@
+<!--Adminpackage/miniApp/miniApp.wxml-->
+<!-- 添加首页轮播图 -->
+<view class="add_box" wx:if="{{CuisineList.length < 10}}">
+    <view>轮播图</view>
+    <image src="/images/add.png" bindtap="addBanner"></image>
+</view>
+<!-- 轮播图 -->
+<view class="stor_info_swiper_box" wx:if="{{bannerImg!=''}}">
+    <swiper autoplay="true" circular="true">
+        <block wx:for="{{bannerImg}}" wx:key="key">
+            <swiper-item>
+                <image mode="aspectFit" src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 添加菜系 -->
+<view class="add_box" wx:if="{{CuisineList.length < 10}}">
+    <view>添加菜系</view>
+    <image src="/images/add.png" bindtap="addCuisine"></image>
+</view>
+
+<!-- 菜系列表 -->
+<view class="store_info_box" wx:if="{{CuisineList !=''}}">
+    <view class="sudoku_list">
+        <view class="sudoku_item" wx:for="{{CuisineList}}" wx:key="index" data-id="{{item._id}}" data-name="{{item.cuisineName}}" data-img="{{item.cuisineImg}}" bindlongtap="ClongPress">
+            <image class="sudoku_item_img" src="{{item.cuisineImg}}"></image>
+            <view class="sudoku_item_name">{{item.cuisineName}}</view>
+        </view>
+    </view>
+    <!-- 提示 -->
+    <text decode="true" class="tips text_tips_spring">【提示】：长按图标删除，最多10个</text>
+</view>
+
+<!-- 添加热门城市 -->
+<view class="add_box" wx:if="{{CityList.length < 5}}">
+    <view>热门城市</view>
+    <image src="/images/add.png" bindtap="addHotCity"></image>
+</view>
+<!-- 城市列表 -->
+<view class="store_info_box" wx:if="{{CityList !=''}}">
+    <view class="sudoku_list">
+        <view class="sudoku_item" wx:for="{{CityList}}" wx:key="index" data-id="{{item._id}} " data-name="{{item.cityName}}" bindlongtap="HlongPress">
+            <image class="sudoku_item_img" src="/images/hot.png"></image>
+            <view class="sudoku_item_name">{{item.cityName}}</view>
+        </view>
+    </view>
+    <!-- 提示 -->
+    <text decode="true" class="tips text_tips_spring">【提示】：长按图标删除，最多5个</text>
+</view>
+
+<!-- 程序服务 -->
+<view class="store_info_box">
+    <view class="sudoku_list">
+        <view style="margin: 10rpx;">内容展示{{allContent === true?'（已关闭）':'（正常）'}}：
+			<switch checked="{{allContent}}" bindchange="allContent" />
+		</view>
+
+        <view style="margin: 10rpx;">店铺入驻{{registerStore === true?'（已关闭）':'（正常）'}}：
+			<switch checked="{{registerStore}}" bindchange="registerStore" />
+		</view>
+
+    </view>
+
+</view>
+<!-- 底部填充盒子 -->
+<view class="bottom_box"></view>

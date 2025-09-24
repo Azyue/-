@@ -1,0 +1,22 @@
+/* Adminpackage/storeApprovoedList/storeApprovoedList.wxss */
+  /* 列表 */
+  .list_box{
+	margin-top: 20rpx;
+  }
+  .list_item {
+	height: auto;
+    margin: 20rpx;
+    padding: 20rpx;
+	border-radius: 15rpx;
+    background-color: #fff;
+    box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+  }
+  .title{
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .desc {
+	margin-top: 20rpx;
+	font-size: 14px;
+  }

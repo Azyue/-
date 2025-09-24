@@ -1,0 +1,51 @@
+<!--Adminpackage/editStore/editStore.wxml-->
+<!-- 输入框 -->
+<view class="input_box">
+    <view class="input_item">
+        <view class='title'>店长：</view>
+        <input class="text_blue" placeholder="请输入姓名" value="{{bossName}}" auto-height="true" data-key="bossName" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>电话：</view>
+        <input class="text_blue" placeholder="请输入电话" value="{{bossPhone}}" type="number" maxlength='11' auto-height="true" data-key="bossPhone" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>店铺名字：</view>
+        <input class="text_blue" placeholder="请输入店铺名字" value="{{storeName}}" maxlength='30' auto-height="true" data-key="storeName" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>店铺简介：</view>
+        <input class="text_blue" placeholder="请输入店铺简介" value="{{storeIntro}}" maxlength='200' auto-height="true" data-key="storeIntro" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>人均消费：</view>
+        <input class="text_blue" type="number" placeholder="请输入人均消费" value="{{Price}}" maxlength='200' auto-height="true" data-key="Price" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>特色：</view>
+        <input class="text_blue" placeholder="请填写特色" value="{{feat}}" maxlength='200' auto-height="true" data-key="feat" bindinput="InputData"></input>
+    </view>
+    <view class="input_item">
+        <view class='title'>菜系：</view>
+        <input class="text_blue" placeholder="请填写菜系" value="{{cuisine}}" maxlength='200' auto-height="true" data-key="cuisine" bindinput="InputData"></input>
+    </view>
+</view>
+
+<!-- 位置信息 -->
+<view class="address_box">
+    <view class='title'>店铺位置：</view>
+    <view class="address">{{AddressName}}</view>
+    <image class="clear_img" src="/images/clear.png" wx:if="{{clear}}" bindtap="clearAddress"></image>
+    <image class="choose_img" src="/images/chooselocation.png" bindtap="chooseLocation"></image>
+</view>
+
+<!-- 时间 -->
+<view class="input_box" wx:if="{{mender}}">
+    <view class="input_item">上次修改：<text class="text_blue">{{mender}}</text></view>
+    <view class="input_item">修改时间：<text class="text_blue">{{editTime}}</text></view>
+</view>
+
+<!-- 提交按钮 -->
+<view class="input_box">
+    <button class='submitbtn' form-type="SubmitEntrust" type="primary" bindtap="Submit">确认修改</button>
+</view>

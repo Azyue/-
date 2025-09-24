@@ -1,0 +1,42 @@
+<!--Adminpackage/chefScore/chefScore.wxml-->
+<!-- 商品卡片 -->
+<view class="card">
+  <view class="card_img">
+    <image src="{{chefImg != ''?chefImg:'/images/image.png'}}" bindtap="PWCoverImg"></image>
+  </view>
+  <view class="card_text">
+    <view class="card_text_h1">厨师：<text class="text_grey">{{chefName}}</text></view>
+    <view class="card_text_h2">擅长菜系：<text class="text_blue">{{chefCuisine}}</text></view>
+    <view class="card_text_h2">所属店铺：<text class="text_blue">{{storeName}}</text></view>
+  </view>
+</view>
+
+  <!-- 详情照片 -->
+<view class="store_info_box">
+  <view class="cu-form-group" style="margin-top: 40rpx;">
+    <view class='title'>
+      <text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>菜系图片（{{cuisineImg.length}}/5）</text>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-5 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{cuisineImg}}" wx:key="index">
+        <image src='{{cuisineImg[index]}}' mode='aspectFill' bindtap="PWDeatailImg" data-url="{{cuisineImg[index]}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 提交评分 -->
+<view class="store_info_box">
+  <view class='score_ed_box'>
+    <view>厨师评分：</view>
+    <view>
+      <block wx:for-items="{{score_img_arr}}" wx:for-item="img" wx:key="index">
+        <image bindtap='onScore' data-score='{{index+1}}' src="{{img}}" />
+      </block>
+    </view>
+    <view class="score_ed_text">{{score_text}}</view>
+  </view>
+  <button type="primary" bindtap="SubmitScore">提交评分</button>
+</view>

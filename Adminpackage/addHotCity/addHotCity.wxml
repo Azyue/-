@@ -1,0 +1,11 @@
+<!--Adminpackage/addHotCity/addHotCity.wxml-->
+<view class="box">
+	<!-- 添加城市 -->
+	<view class="input_item">
+		城市名称：<input type="text" maxlength="30" placeholder="如：北京市" value="{{cityName}}" bindinput="inputData"></input>
+	</view>
+	<view class="input_button">
+		<view class="bg_blue cancle_btn" bindtap="closeInput">取 消</view>
+		<view class="bg_green confirm_btn" bindtap="confirmSubmit">确认添加</view>
+	</view>
+</view>

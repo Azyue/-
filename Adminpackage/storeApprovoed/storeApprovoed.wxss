@@ -1,0 +1,18 @@
+/* Adminpackage/storeApprovoed/storeApprovoed.wxss */
+/* 按钮 */
+.btn_box {
+    margin: 20rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn_box button {
+    width: 300rpx;
+    margin: 10rpx;
+}
+
+.btn_del {
+    color: #fff;
+    background: #EE0A24;
+}

@@ -1,0 +1,28 @@
+/* Adminpackage/storeList/storeList.wxss */
+/* 列表盒子 */
+.list_box {
+  margin-top: 20rpx;
+}
+
+/* 列表项 */
+.list_item {
+  height: auto;
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 15rpx;
+  background-color: #fff;
+  box-shadow: 4px 4px 8px rgba(141, 138, 138, 0.5);
+}
+
+/* 标题 */
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 提示 */
+.desc {
+  margin-top: 20rpx;
+  font-size: 14px;
+  color: grey;
+}

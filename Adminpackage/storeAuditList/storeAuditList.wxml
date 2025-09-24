@@ -1,0 +1,16 @@
+<!--Adminpackage/storeAuditList/storeAuditList.wxml-->
+<view class="list_box">
+	<view class="list_item" wx:for="{{DataList}}" wx:key='index' data-id="{{item._id}}" bindtap="Navigate">
+		<view class="title">{{index+1}}、店铺：{{item.storeName}}</view>
+		<view class="desc">名字：<text class="text_blue">{{item.bossName}}</text></view>
+		<view class="desc">电话：<text class="text_blue">{{item.bossPhone}}</text></view>
+		<view class="desc">店铺地址：<text class="text_blue">{{item.AddressName}}</text></view>
+		<view class="desc">申请时间：<text class="text_red">{{item.ApplyTime}}</text></view>
+		<view class="desc">审核状态：<text class="text_red">待审核</text></view>
+		<view class="tips text_tips_spring">说明：点击卡片查看详情并进行审核</view>
+	</view>
+    <view class="nothing text_blue" wx:if="{{DataList.length == ''}}">
+        <image src="/images/nothing.png"></image>
+        <view>暂时没有待审核的内容！</view>
+    </view>
+</view>
