@@ -1,0 +1,21 @@
+<!--pages/mycollection/mycollection.wxml-->
+
+<!-- 卡片 -->
+<view class="card" wx:for='{{ClloctionsList}}' wx:key="index" data-doc="{{item._id}}" data-id="{{item.storeId}}" data-key="{{item.CollectionType}}" bindtap="goDetail">
+    <view class="card_img">
+        <image src="{{item.coverImg != ''?item.coverImg:'/images/image.png'}}"></image>
+    </view>
+    <view class="card_text">
+        <view class="card_text_h1" wx:if="{{item.CollectionType == 'store'}}">{{index+1}}、店铺：<text class="text_grey">{{item.storeName}}</text></view>
+        <view class="card_text_h2" wx:if="{{item.CollectionType == 'store'}}">地址：<text class="text_grey">{{item.Address}}</text></view>
+        <view class="card_text_h1" wx:if="{{item.CollectionType == 'goods'}}">{{index+1}}、商品：<text class="text_grey">{{item.goodsName}}</text></view>
+        <view class="card_text_h2" wx:if="{{item.CollectionType == 'goods'}}">价格：<text class="text_red" style="font-size: 16px;">￥{{item.Price}}</text><text> {{item.PriceUnit}}</text></view>
+        <view class="card_text_h2" wx:if="{{item.CollectionType == 'goods'}}">所属店铺：<text class="text_grey">{{item.storeName}}</text></view>
+        <view class="card_text_h2">收藏时间：<text class="text_blue">{{item.CollectionTime}}</text></view>
+    </view>
+</view>
+
+<view class="nothing text_blue" wx:if='{{ClloctionsList.length==0}}'>
+    <image src="/images/nothing.png"></image>
+    <view>暂时没有收藏~</view>
+</view>
